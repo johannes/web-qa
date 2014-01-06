@@ -13,7 +13,12 @@ include("../include/release-qa.php");
 $TITLE = "PHP-QA: GitHub Pull Requests";
 $SITE_UPDATE = date("D M d H:i:s Y T", filectime(__FILE__));
 
-common_header();
+$extra_headers = array(
+	'<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>',
+	'<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-route.min.js"></script>',
+	'<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.js"></script>',
+);
+common_header($extra_headers);
 
 ?>
 <script type="text/javascript">
@@ -37,7 +42,26 @@ if (!constant('GITHUB_TOKEN')) {
     exit;
 }
 ?>
+<script src="js/app.js"></script>
+<script src="js/controllers.js"></script>
+<script src="js/services.js"></script>
+
+<div ng-app="pullsApp">
+<div ng-controller="UserCtrl">
+<div ng-show="!user.username">
+	<form ng-submit="doLogin()">
+		Username: <input ng-model="loginuser"> Password: <input ng-model="loginpassword" type="password"><input type="submit" value="Login">
+	</form>
+</div>
+<div ng-show="user.username">
+        Welcome {{user.username}}!
+</div>
+</div>
+
+<div ng-view></div>
+</div>
+
 <?php
 
-common_footer();
+//common_footer();
 
