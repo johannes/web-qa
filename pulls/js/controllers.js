@@ -17,8 +17,8 @@ pullsControllers.controller('PullListCtrl', ['$scope', '$http', '$routeParams',
 pullsControllers.controller('UserCtrl', ['$scope', '$http', 'User',
     function ($scope, $http, User) {
         $scope.user = User;
-	$scope.loginuser = "";
-	$scope.loginpassword = "";
+        $scope.loginuser = "";
+        $scope.loginpassword = "";
 
         $scope.doLogin = function() {
            $http({
