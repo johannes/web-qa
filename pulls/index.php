@@ -45,6 +45,7 @@ if (!constant('GITHUB_TOKEN')) {
 <script src="js/app.js"></script>
 <script src="js/controllers.js"></script>
 <script src="js/services.js"></script>
+<script src="js/user.js"></script>
 
 <div ng-app="pullsApp">
 <div ng-controller="UserCtrl">
@@ -63,5 +64,5 @@ if (!constant('GITHUB_TOKEN')) {
 
 <?php
 
-//common_footer();
+common_footer();
 

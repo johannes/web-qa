@@ -9,17 +9,6 @@ pullsServices.factory('RepoList', ['$resource',
     }
 ]);
 
-pullsServices.factory('User', ['$http',
-    function ($http) {
-        var user = function() {};
-
-        user.prototype.username = false;
-        user.prototype.login = function(username, password) {
-        }
-        return new user();
-    }
-]);
-
 pullsServices.filter('pullsHideEmpty', function() {
     return function(array, hide) {
         if (!hide) {

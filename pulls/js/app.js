@@ -1,5 +1,6 @@
 var pullsApp = angular.module('pullsApp', [
     'ngRoute',
+    'pullsUser',
     'pullsControllers',
     'pullsServices'
 ]);
