@@ -20,3 +20,18 @@ pullsServices.factory('User', ['$http',
     }
 ]);
 
+pullsServices.filter('pullsHideEmpty', function() {
+    return function(array, hide) {
+        if (!hide) {
+            return array;
+        }
+        var filtered = [];
+        for ( var i = 0; i < array.length; i++) {
+            if (array[i].open_issues_count) {
+                filtered.push(array[i]);
+            }
+        }
+        return filtered;
+    }
+});
+

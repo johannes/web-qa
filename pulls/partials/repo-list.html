@@ -1,4 +1,5 @@
-Filter:
+<div>
+	Filter:
 <input ng-model="query">
 Sort:
 <select ng-model="orderProp">
@@ -6,7 +7,9 @@ Sort:
 	<option value="name">Alphabetical</option>
 	<option value="-open_issues"># of open issues</option>
 </select>
-<ul ng-repeat="repo in repos | filter:query | orderBy:orderProp">
+<input type="checkbox" ng-model="hideNoOpen"> Hide repos without open pull requests
+</div>
+<ul ng-repeat="repo in repos | filter:query | pullsHideEmpty:hideNoOpen | orderBy:orderProp">
 	<li repo="name"><b><a href="#/{{repo.name}}">{{repo.name}}</a></b> {{repo.description}} ({{repo.open_issues}})</li>
 </ul>
 
