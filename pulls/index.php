@@ -18,7 +18,7 @@ common_header();
 ?>
 <h1>Github Pull Requests</h1>
 <?php
-if (constant('GITHUB_DEV')) {
+if (defined('GITHUB_DEV')) {
     echo '<div style="width: 100%; border: 2px solid green; padding:10px;"><b>Notice:</b> Running in development mode</div><br>';
 }
 
@@ -26,7 +26,7 @@ if (!getenv('AUTH_TOKEN')) {
     echo '<div style="width: 100%; border: 2px solid red; padding:10px;"><b>Error:</b> AUTH_TOKEN not set</div><br>';
 }
 
-if (!constant('GITHUB_TOKEN')) {
+if (!defined('GITHUB_TOKEN')) {
     echo '<div style="width: 100%; border: 2px solid red; padding:10px;"><b>Error:</b> config.php not configured correctly.</div><br>';
     common_footer();
     exit;

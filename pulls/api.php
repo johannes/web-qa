@@ -3,7 +3,7 @@ $errors = array();
 require('./config.php');
 define('USER_AGENT', 'PHP Pull Request Admin (http://qa.php.net/pulls php-qa@lists.php.net)');
 
-if ($_SERVER['SERVER_NAME'] === 'schlueters.de') {
+if (defined('GITHUB_DEV')) {
 	define('DEV', true);
 	error_reporting(-1);
 	ini_set('display_errors', 1);
