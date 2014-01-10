@@ -1,8 +1,8 @@
-var pullsServices = angular.module('pullsServices', ['ngResource']);
+var pullsServices = angular.module('pullsServices', ['ngResource', 'pullsConfig']);
 
-pullsServices.factory('RepoList', ['$resource',
-    function ($resource) {
-        var url = GITHUB_BASEURL+'orgs/'+GITHUB_ORG+'/repos?per_page=100';
+pullsServices.factory('RepoList', ['$resource', 'Config',
+    function ($resource, Config) {
+        var url = Config.github.baseurl+'orgs/'+Config.github.org+'/repos?per_page=100';
         return $resource(url, {}, {
             query: {method:'GET', isArray:true}
         });

@@ -13,19 +13,9 @@ include("../include/release-qa.php");
 $TITLE = "PHP-QA: GitHub Pull Requests";
 $SITE_UPDATE = date("D M d H:i:s Y T", filectime(__FILE__));
 
-$extra_headers = array(
-	'<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>',
-	'<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-route.min.js"></script>',
-	'<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.js"></script>',
-);
-common_header($extra_headers);
+common_header();
 
 ?>
-<script type="text/javascript">
-  var GITHUB_BASEURL = <?php echo json_encode(GITHUB_BASEURL); ?>;
-  var GITHUB_ORG     = <?php echo json_encode(GITHUB_ORG); ?>;
-  var API_URL        = "api.php";
-</script>
 <h1>Github Pull Requests</h1>
 <?php
 if (constant('GITHUB_DEV')) {
@@ -42,10 +32,6 @@ if (!constant('GITHUB_TOKEN')) {
     exit;
 }
 ?>
-<script src="js/app.js"></script>
-<script src="js/controllers.js"></script>
-<script src="js/services.js"></script>
-<script src="js/user.js"></script>
 
 <div ng-app="pullsApp">
 <div ng-controller="UserCtrl">
@@ -63,6 +49,27 @@ if (!constant('GITHUB_TOKEN')) {
 </div>
 
 <?php
+$JS = array(
+  '//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js',
+  '//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-route.min.js',
+  '//ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular-resource.js',
+  '/../pulls/js/app.js',
+  '/../pulls/js/controllers.js',
+  '/../pulls/js/services.js',
+  '/../pulls/js/user.js',
+);
+common_footer($JS);
+?>
+<script type="text/javascript">
+var pullsConfig = angular.module('pullsConfig', []);
 
-common_footer();
-
+pullsConfig.factory('Config', [function () {
+  return {
+    github: {
+      baseurl: <?php echo json_encode(GITHUB_BASEURL); ?>,
+      org:     <?php echo json_encode(GITHUB_ORG); ?>,
+    },
+    api: "api.php"
+  };
+}]);
+</script>
